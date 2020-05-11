@@ -1,12 +1,11 @@
 package sample;
 
-import enums.CheckType;
-import enums.MoveType;
-import enums.Side;
+import sample.enums.CheckType;
+import sample.enums.MoveType;
+import sample.enums.Side;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -27,23 +26,18 @@ public class Backgammon extends Pane {
 
     //Колонны
     final static Column[][] COLUMNS = new Column[2][12];
-    final static List<Column> lightColumns = new ArrayList<>();
+    private final static List<Column> lightColumns = new ArrayList<>();
 
     // Картинки
     private final static Image[] DICE_SIDES = new Image[6];
-    final static ImageView arrowsImg = new ImageView();
-    final static ImageView dice1 = new ImageView();
-    final static ImageView dice2 = new ImageView();
-
-//    final static List<Check> LIGHT_CHECKS = new ArrayList<>(15);
-//    final static List<Check> DARK_CHECKS = new ArrayList<>(15);
-
+    private final static ImageView arrowsImg = new ImageView();
+    private final static ImageView dice1 = new ImageView();
+    private final static ImageView dice2 = new ImageView();
 
     //Фишки
-    final static HashSet<Check> MOVABLE_CHECKS = new HashSet<>(15);
-    final static Set<Check> LIGHT_HOME = new HashSet<>(15);
-    final static Set<Check> DARK_HOME = new HashSet<>(15);
-
+    private final static HashSet<Check> MOVABLE_CHECKS = new HashSet<>(15);
+    private final static Set<Check> LIGHT_HOME = new HashSet<>(15);
+    private final static Set<Check> DARK_HOME = new HashSet<>(15);
 
     //Панели
     final static OutHome outHome = new OutHome();
@@ -51,89 +45,22 @@ public class Backgammon extends Pane {
     final static Pane stuff = new Pane();
 
     // Флаги
-    static boolean lightFirstRoll ;
-    static boolean darkFirstRoll  ;
-    static boolean movableExists ;
-    static boolean fullLightHome ;
-    static boolean fullDarkHome ;
+    private static boolean lightFirstRoll ;
+    private static boolean darkFirstRoll  ;
+    private static boolean movableExists ;
+    private static boolean fullLightHome ;
+    private static boolean fullDarkHome ;
 
+    private static Button play = new Button("Play"); ;
 
-    static Button play = new Button("Play"); ;
+    private static int dice1Value;
+    private static int dice2Value;
 
-    static int dice1Value;
-    static int dice2Value;
-
-    final static Rotate rotate = new Rotate();
-    static Player player;
-
-    final static Label info = new Label("Info");
+    private final static Rotate rotate = new Rotate();
+    private static Player player;
 
 
     public Backgammon() throws FileNotFoundException {
-
-//        //Создание колонок
-//        for (int i = 0; i < 2; i++) {
-//            for (int j = 0; j < 12; j++) {
-//                Column column = new Column(j, CheckType.EMPTY, Side.getByValue(i));
-//                COLUMNS[i][j] = column;
-//                field.getChildren().add(column);
-//            }
-//        }
-//
-//        //Создание фишек
-//        for (int i = 0; i < 2; i++) {
-//
-//            for (int k = 0; k < 15; k++) {
-//                Check check = new Check(CheckType.getByValue(i), 0, Side.getByValue(i), k, player);
-//                COLUMNS[i][0].addCheck(check);
-//
-//
-//                // Реализация перемещения фишки
-//                check.setOnMouseReleased(event -> {
-//                    if (checkIntersectsOutHome(event.getSceneX(), event.getSceneY()) && check.canMoveOut) {
-//                        outHome.add(check);
-//                        check.moveOut();
-//
-//                        lightOffColumns();
-//                        lightUpMovable();
-//                        outHome.lightOff();
-//
-//                        return;
-//                    }
-//
-//                    Column newColumn = findColumn(event.getSceneX(), event.getSceneY());
-//                    newColumn = newColumn == null ? check.getOldColumn() : newColumn; // чтобы предотвратить выход за поле
-//
-//                    // проверка куша первым ходом
-//                    if ((lightFirstRoll || darkFirstRoll) && kushFirstRoll())
-//                        check.kushFirst = true;
-//
-//                    if (tryMove(newColumn, check) == MoveType.NORMAL)
-//                        check.move(newColumn);
-//                    else
-//                        check.dontMove();
-//
-//
-//                    if (check.isHome()) {
-//                        if (check.getType() == CheckType.LIGHT)
-//                            LIGHT_HOME.add(check);
-//                        else
-//                            DARK_HOME.add(check);
-//                    }
-//
-//                    setFullHome();
-//
-//                    lightOffColumns();
-//                    lightUpMovable();
-//
-//                    outHome.lightOff();
-//                });
-//
-//                field.getChildren().add(check);
-//            }
-//        }
-//
-//        rotate.setAngle(0);
         refresh();
 
         arrowsImg.setImage(new Image(new FileInputStream("src\\images\\arrows.png")));
@@ -172,7 +99,7 @@ public class Backgammon extends Pane {
         diceBox.setAlignment(Pos.CENTER);
         diceBox.getChildren().addAll(dice1, dice2);
 
-        infoField.getChildren().addAll(play, diceBox, info);
+        infoField.getChildren().addAll(play, diceBox);
 
         outHome.setTranslateX((stuff.getPrefWidth() - outHome.getPrefWidth()) / 2);
         outHome.setTranslateY(FIELD_HEIGHT / 2 );
@@ -291,14 +218,12 @@ public class Backgammon extends Pane {
                 rotate.setAngle((rotate.getAngle() + 180) % 360);
 
                 prepareField();
-            } else {
-                info.setText("Использованы не все ходы");
             }
         }
     }
 
 
-    public static void prepareField() {
+    private static void prepareField() {
 
         dice1Value = ((int) (Math.random() * 6)) + 1;
         dice2Value = ((int) (Math.random() * 6)) + 1;
@@ -321,7 +246,7 @@ public class Backgammon extends Pane {
     }
 
 
-    public static Column findColumn(double x, double y) {
+    private static Column findColumn(double x, double y) {
         Side side;
         int columnInd;
         if (x >= 0 && x <= FIELD_WIDTH && y >= 0 && y <= FIELD_HEIGHT) {
@@ -338,12 +263,12 @@ public class Backgammon extends Pane {
         return null; // чтобы предотвратить выход за поле
     }
 
-    public static double rotatedX(double x) {
+    private static double rotatedX(double x) {
         return FIELD_WIDTH - x;
     }
 
 
-    public static MoveType tryMove(Column newColumn, Check check) {
+    private static MoveType tryMove(Column newColumn, Check check) {
         if (check != null) {
             Column oldColumn = check.getOldColumn();
             CheckType checkType = check.getType();
@@ -411,7 +336,7 @@ public class Backgammon extends Pane {
     //подсвечивает фишки, которые могут куда-то сдвинуться, также устанавливается флаг, существуют ли они вообще
     // подсвечиваются в начале хода и каждый раз, когда игрок ставит фишку
     // ходы игрока сортируются для удобства
-    public static void lightUpMovable() {
+    private static void lightUpMovable() {
         removeMovable(); // удаляем светящиеся фишки
 
         if (player.hasMoves()) {
@@ -451,7 +376,6 @@ public class Backgammon extends Pane {
                     }
                 }
             }));
-
             //подсветим фишки, которые можно вывести из дома
             lightUpMoveOut();
         }
@@ -475,9 +399,7 @@ public class Backgammon extends Pane {
                     MOVABLE_CHECKS.add(check);
                     isFound = true;
                 }
-
             }
-
             int toMoveOut = Collections.max(moves);
             //если фишка не найдена, то нужно проверить наличие фишек до позиции, соответствующей максимальному значению
             //кубиков, так как при их наличии нельзя будет  выводить шашки с полей низшего разряда, если в полях
@@ -491,7 +413,6 @@ public class Backgammon extends Pane {
                 }
             }
 
-
             if (!isFound) {
                 for (int i = toMoveOut; i > 0; i--) {
                     Check check = COLUMNS[oppositeCheckType.getValue()][12 - i].getLastCheck();
@@ -503,7 +424,6 @@ public class Backgammon extends Pane {
                 }
             }
         }
-
     }
 
     private static void removeMovable() {
@@ -511,8 +431,7 @@ public class Backgammon extends Pane {
         MOVABLE_CHECKS.clear();
     }
 
-
-    public static void lightOffColumns() {
+    private static void lightOffColumns() {
         lightColumns.forEach(Column::lightOff);
         lightColumns.clear();
     }

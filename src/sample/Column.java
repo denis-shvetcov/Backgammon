@@ -1,7 +1,7 @@
 package sample;
 
-import enums.CheckType;
-import enums.Side;
+import sample.enums.CheckType;
+import sample.enums.Side;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;

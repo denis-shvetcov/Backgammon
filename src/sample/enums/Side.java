@@ -1,4 +1,4 @@
-package enums;
+package sample.enums;
 
 public enum Side {
     DARK (1), LIGHT(0);

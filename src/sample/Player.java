@@ -1,6 +1,6 @@
 package sample;
 
-import enums.CheckType;
+import sample.enums.CheckType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,6 @@ public class Player {
     int moveNum2 = 0;
     int multyMoveNum = 0;
 
-
-    public List<Integer> moves = new ArrayList<>();
-
     public CheckType getType() {
         return checkType;
     }
@@ -27,7 +24,6 @@ public class Player {
         checkType = checkType == CheckType.DARK || checkType == null ? CheckType.LIGHT : CheckType.DARK;
     }
 
-
     public List<Integer> getMoves() {
         List<Integer> moves = new ArrayList<>();
         if (moveNum1 > 0) moves.add(move1);
@@ -35,7 +31,6 @@ public class Player {
         if (multyMoveNum > 0) moves.add(multyMove);
         return moves;
     }
-
 
     public void setMoves(int move1, int move2) {
         this.move1 = move1;
@@ -79,5 +74,4 @@ public class Player {
         //так как сначала сокращается moveNum1, то в случае куша может оказаться, что moveNum1=0 , а moveNum2=2
         if ((moveNum1==0 && moveNum2==2) || (moveNum1>0 && moveNum2>0)) multyMoveNum=1;
     }
-
 }

@@ -11,9 +11,6 @@
 }
 
 .lightup-column {
-/*
-    -fx-effect: innershadow(gaussian, yellow, 10,0.7,0,1);
-    */
     -fx-border-width:3;
     -fx-border-color: yellow;
 }
@@ -81,6 +78,5 @@
 }
 
 .lightup-outhome {
-    /*-fx-border-width:3;*/
     -fx-border-color: yellow;
 }

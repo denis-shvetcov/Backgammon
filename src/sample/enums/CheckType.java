@@ -1,4 +1,4 @@
-package enums;
+package sample.enums;
 
 public enum CheckType {
     DARK(1), LIGHT(0), EMPTY(-1);

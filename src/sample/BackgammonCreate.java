@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 
-import static sample.Backgammon.FIELD_HEIGHT;
-
 
 public class BackgammonCreate extends Application {
 
@@ -24,7 +22,7 @@ public class BackgammonCreate extends Application {
         window.setResizable(false);
 
         Scene scene = new Scene(new Backgammon(),Backgammon.FIELD_WIDTH + Backgammon.stuff.getPrefWidth(),Backgammon.FIELD_HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("Backgammon.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("\\css\\Backgammon.css").toExternalForm());
 
         window.setScene(scene);
         window.setTitle("Long backgammon");

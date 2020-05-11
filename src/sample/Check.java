@@ -1,7 +1,7 @@
 package sample;
 
-import enums.CheckType;
-import enums.Side;
+import sample.enums.CheckType;
+import sample.enums.Side;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Pane;
@@ -144,12 +144,6 @@ public class Check extends Pane {
         check.getStyleClass().remove("can-move-out");
         canMoveOut = false;
     }
-
-//    public int getColumndInd() {
-//        return columnInd;
-//    }
-
-//    public Side getSide() { return side; }
 
     public boolean isHome() {
         return home;

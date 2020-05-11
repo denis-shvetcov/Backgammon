@@ -1,6 +1,6 @@
 package sample;
 
-import enums.CheckType;
+import sample.enums.CheckType;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -11,21 +11,17 @@ import javafx.scene.shape.Rectangle;
 
 public class OutHome extends Pane {
 
-    HBox root = new HBox(0);
-
-    VBox LIGHT_STACK = new VBox(0);
-    VBox DARK_STACK = new VBox(0);
+    private final VBox LIGHT_STACK = new VBox(0);
+    private final VBox DARK_STACK = new VBox(0);
 
     final int STACK_HEIGHT = 250;
     final int STACK_WIDTH = 200;
 
-    final int CHECK_HEIGHT = STACK_HEIGHT /15;
-    final int CHECK_WIDTH = STACK_WIDTH /2;
+    private final int CHECK_HEIGHT = STACK_HEIGHT /15;
+    private final int CHECK_WIDTH = STACK_WIDTH /2;
 
-    final Rectangle LIGHT_CHECK = new Rectangle(CHECK_WIDTH,CHECK_HEIGHT);
-    final Rectangle DARK_CHECK = new Rectangle(CHECK_WIDTH,CHECK_HEIGHT);
-
-
+    private final Rectangle LIGHT_CHECK = new Rectangle(CHECK_WIDTH,CHECK_HEIGHT);
+    private final Rectangle DARK_CHECK = new Rectangle(CHECK_WIDTH,CHECK_HEIGHT);
 
     OutHome() {
         setPrefWidth(STACK_WIDTH);
@@ -46,6 +42,7 @@ public class OutHome extends Pane {
         LIGHT_CHECK.setStroke(Color.BLACK);
         DARK_CHECK.setStroke(Color.BLACK);
 
+        HBox root = new HBox(0);
         root.getChildren().addAll(LIGHT_STACK,DARK_STACK);
 
         getChildren().add(root);
@@ -62,8 +59,6 @@ public class OutHome extends Pane {
             children.add(createCheck(CheckType.DARK));
             if (children.size() == 15) AlertWindow.display(CheckType.DARK);
         }
-
-
     }
 
     private Rectangle createCheck(CheckType type) {

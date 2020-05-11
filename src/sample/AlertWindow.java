@@ -1,6 +1,6 @@
 package sample;
 
-import enums.CheckType;
+import sample.enums.CheckType;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,7 +30,6 @@ public class AlertWindow {
                 type == CheckType.LIGHT ? "светлыми" : "темными"));
         message.getStyleClass().add("message");
 
-
         Button newGame = new Button("Новая игра");
         newGame.setOnAction(event -> {
             play = true;
@@ -38,7 +37,6 @@ public class AlertWindow {
             ((Backgammon) BackgammonCreate.window.getScene().getRoot()).refresh();
 
         });
-
 
         Button close = new Button("Выйти из игры");
         close.setOnAction(event -> {
@@ -54,7 +52,7 @@ public class AlertWindow {
         messageAndButtons.getChildren().addAll(message,buttons);
 
         Scene scene = new Scene(messageAndButtons,400,150);
-        scene.getStylesheets().add(AlertWindow.class.getResource("Alert.css").toString());
+        scene.getStylesheets().add(AlertWindow.class.getResource("\\css\\Alert.css").toString());
 
         window.setScene(scene);
         window.showAndWait();
