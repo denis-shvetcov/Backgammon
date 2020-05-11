@@ -1,0 +1,24 @@
+.button {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-font-size: 14;
+}
+
+.button: hover {
+    -fx-background-color: #fff296;
+}
+
+.button: pressed {
+    -fx-background-color: #ffec61;
+}
+
+.message-and-buttons {
+    -fx-background-color: #fdf5b8;
+}
+
+.message {
+    -fx-font-size: 15;
+}

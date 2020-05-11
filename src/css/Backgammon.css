@@ -1,0 +1,86 @@
+.simple-column {
+    -fx-border-color : black;
+    -fx-border-width : 0.5;
+    -fx-background-color : #e8bd8a;
+}
+
+.home-column {
+    -fx-border-color : black;
+    -fx-border-width : 0.5;
+    -fx-background-color : #cca06d;
+}
+
+.lightup-column {
+/*
+    -fx-effect: innershadow(gaussian, yellow, 10,0.7,0,1);
+    */
+    -fx-border-width:3;
+    -fx-border-color: yellow;
+}
+
+
+.check {
+    -fx-stroke : black;
+    -fx-stroke-width : 2;
+}
+
+.check: hover {
+    -fx-effect: innershadow(gaussian, white, 10, 0.7, 0,0);
+}
+
+.check: pressed {
+    -fx-opacity: 0.95;
+}
+
+.light-check {
+    -fx-fill : #f2e5d6;
+}
+
+.dark-check {
+    -fx-fill : #542e01;
+}
+
+.movable-check   {
+    -fx-effect: innershadow(gaussian, red, 10, 0.7, 0,0);
+}
+
+.can-move-out {
+     -fx-effect: innershadow(gaussian, blue, 10, 0.7, 0,0);
+}
+
+.play-btn {
+    -fx-font-family: verdana;
+    -fx-font-size: 20;
+    -fx-background-radius:0;
+    -fx-border-width:2;
+    -fx-border-color:red;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: white;
+}
+
+.play-btn: hover {
+    -fx-background-color: #dedede;
+}
+
+.play-btn: pressed {
+    -fx-background-color: #efefef;
+}
+
+.label {
+    -fx-font-size: 20;
+}
+
+.stuff {
+    -fx-background-color:#f4ca99;
+}
+
+.outhome {
+  -fx-border-width: 2;
+  -fx-border-color: black;
+}
+
+.lightup-outhome {
+    /*-fx-border-width:3;*/
+    -fx-border-color: yellow;
+}
