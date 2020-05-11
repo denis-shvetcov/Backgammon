@@ -308,8 +308,6 @@ public class Backgammon extends Pane {
 
         player.setMoves(dice1Value, dice2Value);
 
-        System.out.println(Collections.max(player.getMoves()));
-
         //"блокируем" фишки соперника
         Arrays.stream(COLUMNS).forEach(array -> Arrays.stream(array).forEach(column -> {
             if (column.getType() == player.getType()) {
